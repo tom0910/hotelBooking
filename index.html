@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="dist/main.css">
+  <title>Panzió</title>
+</head>
+
+<body class="container">
+
+  <h1>Panzió - szobafoglalás</h1>
+  <hr>
+  <form>
+  <div class="row arrive">
+    <div class="col">
+      <p>Érkezés dátuma:</p>
+    </div>
+    <div class="col">
+      <input type="number" class="form-control arrive__year" placeholder="év">
+    </div>
+    <div class="col">
+      <input type="number" class="form-control arrive__month" min=1 max= 12 maxlength=2 placeholder="hónap">
+    </div>
+    <div class="col">
+      <input type="number" class="form-control arrive__day" min=1 maxlength=2 placeholder="nap">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control arrive__wday" placeholder="nap neve" list="weekdays"  />
+      <datalist id="weekdays">
+        <option value="hétfő">
+        <option value="kedd">
+        <option value="szerda">
+        <option value="csütörtök">
+        <option value="péntek">
+        <option value="szombat">
+        <option value="vasárnap">
+      </datalist>
+    </div>
+  </div>
+
+  <div class="row depart">
+    <div class="col">
+      <p>Távozás dátuma:</p>
+    </div>
+    <div class="col">
+      <input type="number" class="form-control depart__year" placeholder="év">
+    </div>
+    <div class="col">
+      <input type="number" class="form-control depart__month" min=1 max= 12 maxlength=2 placeholder="hónap">
+    </div>
+    <div class="col">
+      <input type="number" class="form-control depart__day" min=1 maxlength=2 placeholder="nap">
+    </div>
+    <div class="col">
+      <input type="text" class="form-control depart__wday" placeholder="nap neve">
+    </div>
+  </div>
+
+  <hr>
+  </form>
+  <div class="row room">
+    <div class="col">
+      <p>Szoba típusa:</p>
+    </div>
+    <div class="col">
+      <form action="">
+        <input class="room__single" type="radio" name="room-type" value=8000  > Egyágyas - 8.000 Ft/éj<br>
+        <input class="room__double" type="radio" name="room-type" value=12000 checked="checked"> Kétágyas - 12.000 Ft/éj<br>
+        <input class="room__double-spare1" type="radio" name="room-type" value=14000 > Kétágyas 1 pótággyal - 14.000 Ft/éj<br>
+        <input class="room__double-spare2" type="radio" name="room-type" value=16000 "> Kétágyas 2 pótággyal - 16.000 Ft/éj
+      </form>
+    </div>
+  </div>
+ <hr>
+ <div class="row">
+   <div class="col guests">
+     Vendégek Száma:
+   </div>
+   <div class="col">
+    <select id="guestChoise">
+      <option value=1>1</option>
+      <option value=2>2</option>
+      <option value=3>3</option>
+      <option value=4>4</option>
+    </select>
+
+   </div>
+ </div>
+ <hr>
+   <div class="row">
+    <div class="col">
+      <p>Ellátás:</p>
+    </div>
+    <div class="col food">
+      <form action="">
+        <input type="radio" name="service" value=500> Reggeli - 500 Ft/nap/fő<br>
+        <input type="radio" name="service" value=1900> Félpanzió -1.900 Ft/nap/fő<br>
+        <input type="radio" name="service" value=2900 checked="checked"> Teljes panzió - 2.900 Ft/nap/fő<br>
+      </form>
+    </div>
+  </div>
+ <hr>
+   <div class="row">
+    <div class="col">
+      <p>Fakulatív szolgáltatások:</p>
+    </div>
+    <div class="col services">
+      <label class="container">
+        <input type="checkbox" checked="checked">
+        <span class="checkmark"></span>
+        Fürdőbelépő - 400 Ft/nap/fő
+      </label>
+
+      <label class="container">
+        <input type="checkbox">
+        <span class="checkmark"></span>
+        Szaunabérlet - 400 Ft/nap/fő
+      </label>
+
+      <label class="container">
+        <input type="checkbox">
+        <span class="checkmark"></span>
+        Wellness-csomag - 800 Ft/nap/fő
+      </label>
+    </div>
+  </div>
+ <hr>
+ <div class="row">
+   <div class="col">
+      <button id="calculate" onclick="calculateTotal()" type="button">Fizetendő</button>
+   </div>
+   <div class="col">
+     <h3 ><span class="payment">0</span> Ft</h3>
+   </div>
+ </div>
+  <div class="row">
+    <p class="error"></p>
+  </div>
+
+
+
+
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/moment.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.1/locale/hu.js"></script>
+  <script type="text/javascript" src="dist/bundle.js"></script>
+</body>
+
+</html>
