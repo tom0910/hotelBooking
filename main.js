@@ -107,7 +107,6 @@ import "./main.scss";
     }
 
     function calculateTotal() {
-      console.log('a', arrivalInput, 'b', departureInput);
       var days = moment(departureInput).diff(moment(arrivalInput), 'days');
       if (days < 0) {
         $(".error").html("Hiba: A megadott távozási dátum korábbi az érkezési dátumnál. Kérem javítsa ki.");
@@ -115,7 +114,6 @@ import "./main.scss";
       } else {
         $(".error").html("");
       }
-      console.log('days', days);
       var room = parseInt(getRoomPrice());
       var food = parseInt(getFoodPrice());
       var services = parseInt(getServices());
